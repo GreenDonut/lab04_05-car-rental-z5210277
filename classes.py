@@ -1,3 +1,9 @@
+# instantiate - create an instance of a class
+# instance = object
+# encapsulation - bundle data + methods that use that data together
+# setter method - method used to control changes to a variable 
+# getter  ''    -  ''     ''  returns value of variable
+
 from abc import ABC, abstractmethod
 from tests import tests
 
@@ -93,7 +99,7 @@ class Manager():
 		self._password = password
 
 
-test1 = SmallCar(13, 59.95,,'Mazda','MX5',1998,False)
+test1 = SmallCar(13, 59.95,'Mazda','MX5',1998,False)
 test2 = LargeCar(7,100.00,'Toyota','Land Rover',2003,False)
 test3 = MediumCar(10,75.00,'Subaru', 'Liberty',2005,True)
 test4 = MediumCar(25,64.99,'Toyota','Trueno AE86', 1983, False)
