@@ -3,6 +3,11 @@
 # encapsulation - bundle data + methods that use that data together
 # setter method - method used to control changes to a variable 
 # getter  ''    -  ''     ''  returns value of variable
+# def - start of functions lmao
+# __init__ - constructor. is called when a new instance is created
+# self. - refers to newly created object
+# arguments passed for __init__ so constructor knows where to store
+# what info (order should match below)
 
 from abc import ABC, abstractmethod
 from tests import tests
