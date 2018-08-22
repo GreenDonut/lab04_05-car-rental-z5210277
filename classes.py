@@ -100,4 +100,3 @@ test4 = MediumCar(25,64.99,'Toyota','Trueno AE86', 1983, False)
 
 tai_lopez = Customer('Tai Lopez', 41, 6771920,'hereinmygarage@yahoo.com','Calabasas')
 tai_lopez.book_car()
-#def __init__(self, age, price_per_day,make,model,year,premium):
