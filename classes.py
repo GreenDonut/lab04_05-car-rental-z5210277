@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
+from tests import tests
 
 class Car(ABC):
-	def __init__(self):
+	def __init__(self, age, price_per_day,make,model,year,premium):
 		self._age = age
 		self._price_per_day = pricePerDay
 		self._make = make
 		self._model = model
 		self._year = year
-		self._size = ''
 		self._premium = premium
 
 	@abstractmethod
@@ -18,8 +18,11 @@ class Car(ABC):
 	def apply_discount(self):
 		pass
 
-	def __str__(self):
-		return str(self.id)
+	def __str__(self, rental):
+		return 'customer name: {}, car booked: {}, rental period: {}, total fee: ${:.2f}'.format(
+            self._name, self._description, rental._rental_period, rental.rental_fee)
+
+
 
 
 class SmallCar(Car):
@@ -52,7 +55,7 @@ class LargeCar(Car):
 			return 0.95		
 					
 class Customer():
-	def __init__(self):
+	def __init__(self,name,age,licence_number,email,credit_card):
 		self._name = name
 		self._age = age
 		self._licence_number = licence_number
@@ -65,7 +68,7 @@ class Customer():
 	
 
 class Rental():
-	def __init__(self):
+	def __init__(self, rental_period, insurance, net_price, location):
 		self._rental_period = rental_p
 		self._insurance = insurance
 		self._net_price = netPrice
@@ -75,12 +78,18 @@ class Rental():
 		rental_fee = car.get_price_multiplier() * self.rental_period * apply_discount()
 		return rental_fee
 class Staff():
-	def __init__(self):
+	def __init__(self,username,password):
 		self._username = username
 		self._password = password
 
 
 class Manager():
-	def __init__(self):
+	def __init__(self,username,password):
 		self._username = username
 		self._password = password
+
+
+test1 = SmallCar(13, 59.95,,'MX5','Mazda',1995,False)
+test2 = LargeCar(7,100.00,'Land Rover','Toyota',2003,False)
+test3 = MediumCar(10,75.00,'Liberty','Subaru','2005',True)
+#def __init__(self, age, price_per_day,make,model,year,premium):
