@@ -12,7 +12,7 @@ class Car(ABC):
 		self._premium = premium
 
 	def is_premium(self):
-		if self.premium:
+		if self._premium == True:
 			return 1.15
 		else:
 			return 1
@@ -27,14 +27,14 @@ class Car(ABC):
 
 class SmallCar(Car):
 	def apply_discount(self, rental):
-		if super().premium and rental.rental_period > 7:
+		if self._premium and rental.rental_period > 7:
 			return 0.95
 		else:
 			return 1
 
 class MediumCar(Car):
 	def apply_discount(self, rental):
-		if super().premium and rental.rental_period > 7:
+		if self._premium and rental.rental_period > 7:
 			return 0.95
 		else:
 			return 1
@@ -54,19 +54,19 @@ class Rental():
 		self._location = location
 
 	def compute_rental_fee(self, car):
-		self.net_price = car.is_premium() * self.rental_period * car.apply_discount(self)
+		self.net_price = car.is_premium() * self._rental_period * car.apply_discount(self)
 		return self.net_price
 
 	def book_car(self, customer, car, rental_period, insurance,location):
 		#calculate rental fee
 		net_price = self.compute_rental_fee(car)
-		new_rental = rental(rental_period,insurance,location)
+		new_rental = Rental(rental_period,insurance,location)
 
 		#booking confirmation
 		print('BOOKING CONFIRMATION')
-		print('Customer Name: ' + customer.name)
+		print('Customer Name: ' + customer._name)
 		print(str(car))
-		print('Booking Period: ' + str(rental.rental_period) + ' Days')
+		print('Booking Period: ' + str(self._rental_period) + ' Days')
 		print('Total Rental Fee: $' + str(net_price))
 		return new_rental
 
@@ -100,4 +100,3 @@ test4 = MediumCar(25,64.99,'Toyota','Trueno AE86', 1983, False)
 customer = Customer('Tai Lopez', 41, 6771920,'hereinmygarage@yahoo.com',54701928493815732)
 rental1 = Rental(14, False, 'Sydney')
 rental1.book_car(customer, test1, 14, False, 'Sydney')
-#book car method should take in : customerdetails, then compute net price, then print
