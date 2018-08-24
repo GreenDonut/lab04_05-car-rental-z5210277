@@ -8,107 +8,114 @@
 # self. - refers to newly created object
 # arguments passed for __init__ so constructor knows where to store
 # what info (order should match below)
+# override - ability of a class to change implementation of a method
+# provided by one of its ancestors 
+# import - access code from another module 
+# module - document w/ python code?
+# abstract class - contain one or more abstract methods
+# abstract method - declared but contains no implementation
 
-from abc import ABC, abstractmethod
-from tests import tests
+from abc import ABCMeta, abstractmethod
+# from tests import tests
 
-class Car(ABC):
-	def __init__(self, age, price_per_day,make,model,year,premium):
-		self._age = age
-		self._price_per_day = pricePerDay
-		self._make = make
-		self._model = model
-		self._year = year
-		self._premium = premium
+class Car(ABCMeta):
+    def __init__(self, age, price_per_day,make,model,year,premium):
+        self._age = age
+        self._price_per_day = pricePerDay
+        self._make = make
+        self._model = model
+        self._year = year
+        self._premium = premium
 
-	@abstractmethod
-	def get_price(self):
-		pass
+    @abstractmethod
+    def get_price(self):
+        pass
 
-	@abstractmethod
-	def apply_discount(self):
-		pass
+    @abstractmethod
+    def apply_discount(self):
+        pass
 
-	def __str__(self, rental):
-		return 'customer name: {}, car booked: {}, rental period: {}, total fee: ${:.2f}'.format(
+    def __str__(self, rental):
+        return 'customer name: {}, car booked: {}, rental period: {}, total fee: ${:.2f}'.format(
             self._name, self._description, rental._rental_period, rental.rental_fee)
 
-
-
-
 class SmallCar(Car):
-	def get_price_multiplier(self):
-		if car.premium:
-			return 1.15
-		else:
-			return 1
-	def apply_discount(self):
-		if car.premium and rental_period > 7:
-			return 0.95				
+    def get_price_multiplier(self):
+        if car.premium:
+            return 1.15
+        else:
+            return 1
+    def apply_discount(self):
+        if car.premium and rental_period > 7:
+            return 0.95				
 class MediumCar(Car):
-	def get_price_multiplier(self):
-		if car.premium:
-			return 1.15
-		else:
-			return 1
-	def apply_discount(self):
-		if car.premium and rental_period > 7:
-			return 0.95				
+    def get_price_multiplier(self):
+        if car.premium:
+            return 1.15
+        else:
+            return 1
+    def apply_discount(self):
+        if car.premium and rental_period > 7:
+            return 0.95				
 
 class LargeCar(Car):
-	def get_price_multiplier(self):
-		if car.premium:
-			return 1.15
-		else:
-			return 1
-	def apply_discount(self):
-		if rental_period > 7:
-			return 0.95		
+    def get_price_multiplier(self):
+        if car.premium:
+            return 1.15
+        else:
+            return 1
+    def apply_discount(self):
+        if rental_period > 7:
+            return 0.95		
 
 
 class Rental():
-	def __init__(self, rental_period, insurance, net_price, location):
-		self._rental_period = rental_p
-		self._insurance = insurance
-		self._net_price = netPrice
-		self._location = location
+    def __init__(self, rental_period, insurance, net_price, pickup_location,
+                 drop_off_location):
+        self._rental_period = rental_p
+        self._insurance = insurance
+        self._net_price = netPrice
+        self._location = location
 
-	def compute_rental_fee(self, car):
-		rental_fee = car.get_price_multiplier() * self.rental_period * apply_discount()
-		return rental_fee
+    def compute_rental_fee(self, car):
+        rental_fee = car.get_price_multiplier() * self.rental_period * apply_discount()
+        return rental_fee
+    
+    def book_car(self, car, customer, rental_period, insurance, net_price,
+                 location):
+        self._car = car
+        self._customer = customer
+        self._rental_period = rental_period
+        self.insurance = insurance
+        self._net_price = net_price
+        return 'price = ${}'.format(self._net_price)
 
 class Customer():
-	def __init__(self,name,age,licence_number,email,credit_card):
-		self._name = name
-		self._age = age
-		self._licence_number = licence_number
-		self._email = email 
-		self._credit_card = credit_card
-
-	def book_car(self, customer):
-		#take details
-		#compute rental fee
-		#get booking confirmation
-		pass
+    def __init__(self, name, age, licence_number, email, credit_card):
+        self._name = name
+        self._age = age
+        self._licence_number = licence_number
+        self._email = email 
+        self._credit_card = credit_card
 	
 
 class Staff():
-	def __init__(self,username,password):
-		self._username = username
-		self._password = password
+    def __init__(self,username,password):
+        self._username = username
+        self._password = password
 
 
 class Manager():
-	def __init__(self,username,password):
-		self._username = username
-		self._password = password
+    def __init__(self,username,password):
+        self._username = username
+        self._password = password
 
 
 test1 = SmallCar(13, 59.95,'Mazda','MX5',1998,False)
-test2 = LargeCar(7,100.00,'Toyota','Land Rover',2003,False)
-test3 = MediumCar(10,75.00,'Subaru', 'Liberty',2005,True)
-test4 = MediumCar(25,64.99,'Toyota','Trueno AE86', 1983, False)
+#test2 = LargeCar(7,100.00,'Toyota','Land Rover',2003,False)
+#test3 = MediumCar(10,75.00,'Subaru', 'Liberty',2005,True)
+#test4 = MediumCar(25,64.99,'Toyota','Trueno AE86', 1983, False)
 
-tai_lopez = Customer('Tai Lopez', 41, 6771920,'hereinmygarage@yahoo.com','Calabasas')
-tai_lopez.book_car()
+#tai_lopez = Customer('Tai Lopez', 41, 6771920,'hereinmygarage@yahoo.com','Calabasas')
+#tai_lopez.book_car()
 #def __init__(self, age, price_per_day,make,model,year,premium):
